@@ -157,6 +157,13 @@ export default function Home() {
             {" · "}
             <a href="https://wikolabs.com" target="_blank" rel="noopener noreferrer" style={{ color: "#99f6e4", textDecoration: "none" }}>wikolabs.com</a>
           </p>
+          <p style={{ color: "#99f6e4", marginTop: 8, fontSize: 13, display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
+            <a href="mailto:team@wikolabs.com" style={{ color: "#99f6e4", textDecoration: "none" }}>team@wikolabs.com</a>
+            <span>·</span>
+            <a href="tel:+261386626100" style={{ color: "#99f6e4", textDecoration: "none" }}>+261 38 66 261 00</a>
+            <span>·</span>
+            <a href="https://calendly.com/wikolabs" target="_blank" rel="noopener noreferrer" style={{ color: "#99f6e4", textDecoration: "none" }}>Prendre RDV</a>
+          </p>
           <p style={{ fontSize: 13, color: "#14b8a6" }}>© 2026 Wikolabs. Tous droits réservés.</p>
         </div>
       </footer>
