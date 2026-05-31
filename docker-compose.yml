@@ -15,21 +15,9 @@ services:
       GROQ_API_KEY: ${GROQ_API_KEY:-}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
     networks:
-      - causalai-net
-
-  causalai:
-    image: ghcr.io/wikolabs/causalai:latest
-    container_name: causalai
-    restart: unless-stopped
-    ports:
-      - "3040:3000"
-    environment:
-      BACKEND_URL: "http://causalai-backend:8000"
-    depends_on:
-      - causalai-backend
-    networks:
-      - causalai-net
-
+  wkdemo_net:
+    name: wkdemo-net
+    external: true
 networks:
   causalai-net:
     name: causalai-net
