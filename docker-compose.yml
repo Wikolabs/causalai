@@ -1,10 +1,11 @@
 version: "3.9"
 
-# CausalAI demo — production-ready POC.
+# causalai demo - production-ready POC.
 # 2 services orchestrated:
 #   - causalai (Next.js frontend on host port 3040)
 #   - causalai-backend (FastAPI Python, internal only on 8000)
-# Internal network so the frontend can reach the backend by service name.
+# Shared external network wkdemo-net (created once by deploy.yml) avoids
+# Docker default address-pool exhaustion across all 47 LP stacks.
 
 services:
   causalai-backend:
@@ -15,10 +16,22 @@ services:
       GROQ_API_KEY: ${GROQ_API_KEY:-}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
     networks:
+      - wkdemo_net
+
+  causalai:
+    image: ghcr.io/wikolabs/causalai:latest
+    container_name: causalai
+    restart: unless-stopped
+    ports:
+      - "3040:3000"
+    environment:
+      BACKEND_URL: "http://causalai-backend:8000"
+    depends_on:
+      - causalai-backend
+    networks:
+      - wkdemo_net
+
+networks:
   wkdemo_net:
     name: wkdemo-net
     external: true
-networks:
-  causalai-net:
-    name: causalai-net
-    driver: bridge
